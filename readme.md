@@ -46,3 +46,7 @@ A fejlesztői oldal url címe: http://localhost:5173
 - Regisztrálhat
 - Bejelentkezhet
 - Elérheti a feltöltött összes blog bejegyzést
+
+## Backend védelme
+
+- A Backend cors policy-a csak a kiszolgálótól fogad el kérést jelen esetben a lokális react app kizárólag.

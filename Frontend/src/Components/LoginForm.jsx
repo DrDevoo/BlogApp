@@ -1,10 +1,43 @@
 import axios from "axios";
+import { useState } from "react";
+
 function LoginForm() {
+  const [msg, setMsg] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = {
+      email: formData.get("email-address"),
+      password: formData.get("password"),
+    };
+
+    axios
+      .post("http://localhost:5077/api/Account/login", data)
+      .then((response) => {
+        console.log("Sikeres bejelentkezés:", response.data);
+        if(response.data && response.data.token) {
+          localStorage.setItem("token", response.data.token);
+          setMsg("Sikeres bejelentkezés! Üdvözöljük a rendszerben.");
+          window.location.href = "/";
+        }
+      })
+      .catch((error) => {
+        if (error.response && error.response.data) {
+          console.error("Hiba a bejelentkezés során:", error.response.data);
+          setMsg("Hiba történt a bejelentkezés során. Kérjük, ellenőrizze az adatokat és próbálja újra.");
+        } else {
+          console.error("Hiba a bejelentkezés során:", error);
+          setMsg("Hiba történt a bejelentkezés során. Kérjük, próbálja újra később.");
+        }
+      });
+  }
   return (
     <main className="pa4 black-80">
-      <form className="measure center">
+      <form className="measure center" onSubmit={handleSubmit}>
         <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
           <legend className="f4 fw6 ph0 mh0">Bejelentkezés</legend>
+          {msg && <div className="bg-light-red pa3 mb3">{msg}</div>}
           <div className="mt3">
             <label className="db fw6 lh-copy f6" htmlFor="email-address">
               Email cím

@@ -36,7 +36,7 @@ public class AccountController : ControllerBase
 
         if (result.Succeeded)
         {
-            return Ok(new { message = "User registered successfully." });
+            return Ok(new { message = "Sikeres felhasználó regisztráció!" });
         }
         else
         {
@@ -76,10 +76,10 @@ public class AccountController : ControllerBase
 
         var claims = new[]
         {
-        new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
-        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-        new Claim(ClaimTypes.NameIdentifier, user.Id)
-    };
+            new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            new Claim(ClaimTypes.NameIdentifier, user.Id)
+        };
 
         var token = new JwtSecurityToken(
             issuer: null,

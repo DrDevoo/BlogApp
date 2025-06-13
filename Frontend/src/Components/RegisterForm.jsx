@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import { useState } from "react";
 
 function RegisterForm() {
   const [msg, setMsg] = useState("");
@@ -69,7 +69,6 @@ function RegisterForm() {
           );
         }
       });
-      
   }
 
   return (

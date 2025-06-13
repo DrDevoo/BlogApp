@@ -1,5 +1,4 @@
 function NewPostBox({ onCancel }) {
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);

@@ -61,9 +61,6 @@ function LoginForm() {
               id="password"
             />
           </div>
-          <label className="pa0 ma0 lh-copy f6 pointer">
-            <input type="checkbox" /> Emlékezz rám
-          </label>
         </fieldset>
         <div>
           <input

@@ -11,6 +11,7 @@ function Header() {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("username");
     setIsLoggedIn(false);
     window.location.href = "/";
   }

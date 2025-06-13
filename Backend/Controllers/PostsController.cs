@@ -28,6 +28,19 @@ public class PostsController : ControllerBase
         return post;
     }
 
+    [HttpGet("author/{authorName}")]
+    public async Task<ActionResult<IEnumerable<BlogPost>>> GetPostsByAuthor(string authorName)
+    {
+        var posts = await _context.BlogPosts
+            .Where(p => p.Author == authorName)
+            .ToListAsync();
+
+        if (posts == null || posts.Count == 0)
+            return NotFound();
+
+        return Ok(posts);
+    }
+
     [HttpPost]
     [Authorize]
     public async Task<IActionResult> CreatePost(BlogPost post)

@@ -18,6 +18,7 @@ function LoginForm() {
         console.log("Sikeres bejelentkezés:", response.data);
         if(response.data && response.data.token) {
           localStorage.setItem("token", response.data.token);
+          localStorage.setItem("username", response.data.username);
           setMsg("Sikeres bejelentkezés! Üdvözöljük a rendszerben.");
           window.location.href = "/";
         }

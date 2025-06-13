@@ -60,8 +60,8 @@ public class AccountController : ControllerBase
             return Unauthorized("Hibás jelszó.");
 
         var token = GenerateJwtToken(user);
-
-        return Ok(new { token });
+        var username = user.UserName;
+        return Ok(new { token, username });
     }
 
     private string GenerateJwtToken(IdentityUser user)
